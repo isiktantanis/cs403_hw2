@@ -21,7 +21,6 @@ with open("Cit-HepPh.txt") as fp:
         for j in range(numLines):
             if i == lineNums[j]:
                 count = count + 1
-                print(count)
                 f.write(line)
                 elts = line.rstrip().split("\t")
                 myData.append((int(elts[0]), int(elts[1])))
