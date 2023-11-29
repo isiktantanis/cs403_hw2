@@ -56,11 +56,13 @@ class MapReduce:
         partial_results = [None] * self.num_workers
         for i in range(self.num_workers):
             piece = receiver.recv_json()
+            # print(f"collector received {piece}")
             partial_results[piece["i"]] = piece["data"]
+        # print("partial_results", partial_results)
 
         reduced_result = self.Reduce(partial_results)
         with open("results.txt", "w") as f:
-            f.write(reduced_result)
+            f.write(str(reduced_result))
 
         # print(f"ResultCollector end, {os.getpid()}")
 
